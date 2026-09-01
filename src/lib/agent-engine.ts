@@ -56,6 +56,24 @@ export async function runAgentPipeline(repoUrl: string): Promise<void> {
     store.pushLog({ stage, level, message, meta });
   };
 
+  // Fire the server-side proxy in the background so that, when SOLARI_LIVE_MODE=true
+  // is set in .env.local, a real Solari API call is made via /api/solari/run.
+  // In simulated mode (default), this just acknowledges the request.
+  fetch('/api/solari/run', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ repoUrl }),
+  })
+    .then((r) => r.json())
+    .then((data) => {
+      if (data?.mode === 'live') {
+        log('sandbox_clone', 'success', `Solari live API session acknowledged: ${data.message ?? 'ok'}`);
+      }
+    })
+    .catch(() => {
+      // silent — the simulated pipeline continues regardless
+    });
+
   const completeStage = (id: StageId, progress = 100) => {
     if (cancelled) return;
     store.updateStage(id, {

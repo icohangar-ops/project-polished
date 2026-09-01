@@ -1,11 +1,20 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Sparkles, Github, Zap } from 'lucide-react';
+import { Sparkles, Github, Zap, KeyRound, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
+import { useSolariStatus } from '@/hooks/use-solari-status';
 
 export function Header() {
+  const { status, loading } = useSolariStatus();
+
   return (
     <header className="border-b border-border/60 bg-background/80 backdrop-blur-xl sticky top-0 z-30">
       <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
@@ -30,9 +39,35 @@ export function Header() {
           </div>
 
           <div className="flex items-center gap-2 sm:gap-3">
-            <Badge variant="outline" className="hidden sm:inline-flex gap-1.5 font-mono text-[10px]">
+            {/* Solari API key status badge */}
+            {!loading && status?.hasApiKey && (
+              <TooltipProvider delayDuration={200}>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Badge
+                      variant="outline"
+                      className="hidden sm:inline-flex gap-1.5 font-mono text-[10px] border-emerald-500/40 bg-emerald-500/10 text-emerald-300"
+                    >
+                      {status.liveMode ? (
+                        <ShieldCheck className="h-3 w-3" />
+                      ) : (
+                        <KeyRound className="h-3 w-3" />
+                      )}
+                      {status.keyPreview}
+                    </Badge>
+                  </TooltipTrigger>
+                  <TooltipContent side="bottom" className="text-xs">
+                    {status.liveMode
+                      ? `Live mode — real Solari API calls enabled (SDK v${status.sdkVersion})`
+                      : `Solari API key configured — demo mode active (SDK v${status.sdkVersion})`}
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            )}
+
+            <Badge variant="outline" className="hidden md:inline-flex gap-1.5 font-mono text-[10px]">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              solari-sdk v0.4.2
+              solari-sdk v{status?.sdkVersion ?? '0.4.2'}
             </Badge>
             <Button asChild size="sm" variant="ghost" className="gap-1.5">
               <a
