@@ -44,6 +44,12 @@ surfaces — **browser**, **sandbox**, and **desktop**:
 
 ## Live demo
 
+**📺 Demo video:** [`project-polished-demo.mp4`](./download/project-polished-demo.mp4) (28s, 1440×900, H.264, no audio)
+
+Prefer a release download? Grab it from either repo:
+- https://github.com/icohangar-ops/project-polished/releases/download/v1.0-demo/project-polished-demo.mp4
+- https://github.com/Cubiczan/project-polished/releases/download/v1.0-demo/project-polished-demo.mp4
+
 This repository ships with a fully simulated pipeline so you can see the entire
 agent experience end-to-end without provisioning real sandboxes. The simulation
 is wired to drop realistic events into the same Zustand store the real SDK would
@@ -139,6 +145,10 @@ Each issue is paired with a surgical code patch applied via the desktop stage.
 
 This project is a submission for the [Solari Cookbook bounty](https://github.com/solari-sdk/solari-cookbook/).
 
+**Mirrored on both GitHub accounts:**
+- Primary: https://github.com/icohangar-ops/project-polished
+- Mirror:  https://github.com/Cubiczan/project-polished
+
 **Tagging the founders as required:**
 - [@harrychow_](https://twitter.com/harrychow_)
 - [@getsolari](https://twitter.com/getsolari)
@@ -156,8 +166,9 @@ This project is a submission for the [Solari Cookbook bounty](https://github.com
 > 4️⃣ Uses Solari's desktop automation to open VS Code and write surgical fixes
 > 5️⃣ Pushes a ready-to-merge PR
 >
-> Repo: [link]
-> Live demo: [link]
+> Repo: https://github.com/icohangar-ops/project-polished
+> Mirror: https://github.com/Cubiczan/project-polished
+> Demo video: https://github.com/icohangar-ops/project-polished/releases/tag/v1.0-demo
 >
 > @im_roy_lee — used AI to ship this in one afternoon. ⚡
 
