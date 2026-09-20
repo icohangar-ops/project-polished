@@ -2,6 +2,8 @@
 
 > An autonomous UI/UX revamp agent built on the [Solari SDK](https://github.com/solari-sdk/solari-cookbook).
 > **Drop a GitHub repo. Get a polished UI PR. No setup, no manual triage.**
+>
+> **Status: simulated demo.** The 6-stage pipeline runs as a realistic simulation — `src/lib/agent-engine.ts` drives the dashboard with events from bundled sample datasets (`src/lib/agent-data.ts`); no live Solari SDK call is wired yet. The live-mode integration point is `src/app/api/solari/run/route.ts` (`SOLARI_LIVE_MODE=true`).
 
 **Bounty submission** for the [Solari Cookbook](https://github.com/solari-sdk/solari-cookbook).
 Tags: **@harrychow_**, **@getsolari**, **@im_roy_lee**.
@@ -15,7 +17,7 @@ Tags: **@harrychow_**, **@getsolari**, **@im_roy_lee**.
 | **28s end-to-end run** | [🎬 `demo/project-polished-demo.mp4`](demo/project-polished-demo.mp4) |
 | **Reproducible polish pipeline** | [`demo/polish-video.sh`](demo/polish-video.sh) (FFMPEG: trim dead air, add overlays) |
 
-> The full pipeline runs in **~28 seconds**: paste a repo URL → click "Run Agent" → watch the sandbox spin up, the browser crawl, the vision model flag issues, the desktop agent write patches, and a PR open.
+> The demo pipeline plays in **~28 seconds**: paste a repo URL → click "Run Agent" → watch the simulated sandbox spin up, the browser preview crawl, the vision stage flag issues, the desktop stage write patches, and a PR open (simulated — see the status note above).
 
 ---
 
