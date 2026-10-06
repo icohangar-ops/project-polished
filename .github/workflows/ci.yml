@@ -1,6 +1,5 @@
 # Checks that pass on the current tree.
-# Left out: tsc (examples/websocket imports socket.io, which is not installed)
-# and tests/python-runtime-container.sh (needs Docker and a runner image that is not published).
+# Left out: tests/python-runtime-container.sh (needs Docker and a runner image that is not published).
 
 name: CI
 
@@ -39,6 +38,9 @@ jobs:
 
       - name: Generate Prisma client
         run: bun run db:generate
+
+      - name: Typecheck
+        run: bunx tsc --noEmit
 
       - name: Build
         run: bun run build
